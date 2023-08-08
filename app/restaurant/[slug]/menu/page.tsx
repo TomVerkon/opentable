@@ -1,16 +1,20 @@
-import MainNavBar from '@/app/components/MainNavBar';
-import DescriptionCard from './components/DescriptionCard';
-import MenuHeader from './components/MenuHeader';
+import { Metadata } from 'next';
+import RestaurantNavBar from '../components/RestaurantNavBar';
+import Menu from './components/Menu';
+
+export const metadata: Metadata = {
+  title: 'RestaurantMenuPage | OpenTable | Clone',
+  description: 'OpenTable restaurant menu page',
+};
 
 function RestaurantMenuPage() {
   return (
-    <main className="bg-gray-100 min-h-screen w-screen">
-      <main className="max-w-screen-2xl m-auto bg-white">
-        <MainNavBar />
-        <MenuHeader />
-        <DescriptionCard />
-      </main>
-    </main>
+    <div className="flex m-auto w-2/3 justify-between items-start 0 -mt-11">
+      <div className="bg-white w-[100%] rounded p-3 shadow">
+        <RestaurantNavBar />
+        <Menu />
+      </div>
+    </div>
   );
 }
 

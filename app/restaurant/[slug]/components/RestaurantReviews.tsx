@@ -7,9 +7,7 @@ function RestaurantReviews() {
         What 100 people are saying
       </h1>
       <div>
-        {/* REVIEW CARD */}
         <RestaurantReviewCard />
-        {/* REVIEW CARD */}
       </div>
     </div>
   );
