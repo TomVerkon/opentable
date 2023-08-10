@@ -1,6 +1,7 @@
+import { Item } from '../page';
 import MenuCard from './MenuCard';
 
-function Menu() {
+function Menu({ items }: { items: Item[] }) {
   return (
     <main className="bg-white mt-5">
       <div>
@@ -8,7 +9,9 @@ function Menu() {
           <h1 className="font-bold text-4xl">Menu</h1>
         </div>
         <div className="flex flex-wrap justify-between">
-          <MenuCard />
+          {items.map(item => {
+            return <MenuCard key={item.id} item={item} />;
+          })}
         </div>
       </div>
     </main>

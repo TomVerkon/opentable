@@ -24,7 +24,7 @@ const fetchRestaurant = async (slug: string): Promise<Restaurant | null> => {
 
 export async function generateMetadata(props: Props): Promise<Metadata> {
   return {
-    title: `${props.params.slug} - Restaurant | OpenTableClone`,
+    title: `${props.params.slug} - Restaurant`,
     description: `${props.params.slug} restaurant page`,
   };
 }
