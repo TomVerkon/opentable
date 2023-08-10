@@ -6,8 +6,8 @@ import './globals.css';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Opentable | Clone',
-  description: 'Opentable Clone Application',
+  title: 'MyOpentable',
+  description: 'MyOpentable Application',
 };
 
 export default function RootLayout({
