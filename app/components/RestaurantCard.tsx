@@ -8,19 +8,16 @@ interface Props {
 
 function RestaurantCard(props: Props) {
   const { restaurant } = props;
+  const reviewCount = restaurant.reviews.length;
   return (
     <div className="w-64 h-72 m-3 rounded overflow-hidden border cursor-pointer">
       <Link href={`/restaurant/${restaurant.slug}`}>
-        <img
-          src={restaurant.main_image}
-          alt={restaurant.name}
-          className="w-full h-36"
-        />
+        <img src={restaurant.main_image} alt={restaurant.name} className="w-full h-36" />
         <div className="p-1">
           <h3 className="font-bold text-2xl mb-2">{restaurant.name}</h3>
           <div className="flex items-start">
             <div className="flex mb-2">*****</div>
-            <p className="ml-2">77 reviews</p>
+            <p className="ml-2">{reviewCount === 0 ? 'No' : reviewCount} reviews</p>
           </div>
           <div className="flex text-reg font-light capitalize">
             <p className=" mr-3">{restaurant.Cuisine.name}</p>

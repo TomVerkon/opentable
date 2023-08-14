@@ -1,15 +1,18 @@
 import { PRICE } from '@prisma/client';
 
 interface Props {
-  price: PRICE;
+  price?: PRICE;
 }
 
 export default function Price({ price }: Props) {
   const renderPrice = () => {
+    if (price === undefined) {
+      return <span className="text-center">All</span>;
+    }
     if (price === PRICE.CHEAP) {
       return (
         <>
-          <span>$$</span> <span className="text-gray-400">$$</span>
+          <span>$$</span> <span className="text-gray-300">$$</span>
         </>
       );
     } else if (price === PRICE.REGULAR) {

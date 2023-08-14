@@ -1,4 +1,4 @@
-import { Cuisine, Location, PRICE, PrismaClient } from '@prisma/client';
+import { Cuisine, Location, PRICE, PrismaClient, Review } from '@prisma/client';
 import { Metadata } from 'next';
 import MainHeader from './components/MainHeader';
 import RestaurantCard from './components/RestaurantCard';
@@ -13,6 +13,7 @@ export interface RestaurantCardType {
   location: Location;
   Cuisine: Cuisine;
   slug: string;
+  reviews: Review[];
 }
 
 export const metadata: Metadata = {
@@ -30,6 +31,7 @@ const fetchRestaurants = async (): Promise<RestaurantCardType[]> => {
       location: true,
       Cuisine: true,
       slug: true,
+      reviews: true,
     },
   })) as RestaurantCardType[];
   return restaurants ? restaurants : [];
@@ -37,6 +39,7 @@ const fetchRestaurants = async (): Promise<RestaurantCardType[]> => {
 
 export default async function HomePage() {
   const restaurants: RestaurantCardType[] = await fetchRestaurants();
+  console.log(' home page first retaurant:', restaurants[0]);
   return (
     <main>
       <MainHeader />

@@ -1,4 +1,5 @@
-import { PrismaClient, Restaurant } from '@prisma/client';
+import { getReviewRatingsAverage } from '@/utils/getReviewRatingsAverage';
+import { Cuisine, Location, PRICE, PrismaClient, Review } from '@prisma/client';
 import { Metadata } from 'next';
 import RestaurantDescription from './components/RestaurantDescription';
 import RestaurantImages from './components/RestaurantImages';
@@ -16,10 +17,35 @@ interface Props {
   };
 }
 
-const fetchRestaurant = async (slug: string): Promise<Restaurant | null> => {
+export interface RestaurantDetailCardType {
+  id: number;
+  name: string;
+  main_image: string;
+  price: PRICE;
+  location: Location;
+  description: string;
+  Cuisine: Cuisine;
+  slug: string;
+  reviews: Review[];
+  images: string[];
+}
+
+const fetchRestaurant = async (slug: string): Promise<RestaurantDetailCardType | null> => {
   return (await prisma.restaurant.findUnique({
+    select: {
+      id: true,
+      name: true,
+      main_image: true,
+      price: true,
+      location: true,
+      description: true,
+      Cuisine: true,
+      slug: true,
+      reviews: true,
+      images: true,
+    },
     where: { slug: slug },
-  })) as Restaurant;
+  })) as RestaurantDetailCardType;
 };
 
 export async function generateMetadata(props: Props): Promise<Metadata> {
@@ -33,15 +59,17 @@ async function RestaurantDetailsPage({ params }: Props) {
   const { slug } = params;
   const restaurant = await fetchRestaurant(slug);
   if (!restaurant) return <div>Not Found</div>;
+  let avgRating = getReviewRatingsAverage(restaurant.reviews);
+
   return (
     <div className="flex m-auto w-2/3 justify-between items-start 0 -mt-11">
       <div className="bg-white w-[73%] rounded p-3 shadow">
         <RestaurantNavBar slug={restaurant.slug} />
         <RestaurantTitle title={restaurant.name} />
-        <RestaurantRating />
+        <RestaurantRating avgRating={avgRating} reviewCount={restaurant.reviews.length} />
         <RestaurantDescription description={restaurant.description} />
         <RestaurantImages images={restaurant.images} />
-        <RestaurantReviews />
+        <RestaurantReviews reviews={restaurant.reviews} />
       </div>
       <div className="w-[22%] relative text-reg">
         <RestaurantReservationCard />
