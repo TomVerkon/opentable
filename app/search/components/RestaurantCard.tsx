@@ -1,5 +1,6 @@
 'use client';
 import Price from '@/app/components/Price';
+import Stars from '@/app/components/Stars';
 import { getReviewRatingsAverage } from '@/utils/getReviewRatingsAverage';
 import Link from 'next/link';
 import { Restaurant } from '../page';
@@ -19,7 +20,9 @@ function RestaurantCard(props: Props) {
       <div className="pl-5">
         <h2 className="text-3xl capitalize">{name}</h2>
         <div className="flex items-start">
-          <div className="flex mb-2">*****</div>
+          <div className="flex mb-2">
+            <Stars avgRating={average} />
+          </div>
           <p className="ml-2 text-reg">{ratingAverage}</p>
         </div>
         <div className="mb-9">
