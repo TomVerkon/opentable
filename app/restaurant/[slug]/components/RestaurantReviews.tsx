@@ -18,7 +18,7 @@ function RestaurantReviews({ reviews }: Props) {
       <h1 className="font-bold text-3xl mt-10 mb-7 borber-b pb-5">{headerText}</h1>
       <div>
         {reviews.map(review => (
-          <RestaurantReviewCard review={review} />
+          <RestaurantReviewCard review={review} key={review.id} />
         ))}
       </div>
     </div>

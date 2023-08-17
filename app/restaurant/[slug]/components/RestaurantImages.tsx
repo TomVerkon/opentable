@@ -5,8 +5,8 @@ function RestaurantImages({ images }: { images: string[] }) {
         {images.length} photos
       </h1>
       <div className="flex flex-wrap">
-        {images.map(image => {
-          return <img className="w-56 h-44 m-1" src={image} alt="" />;
+        {images.map((image, index) => {
+          return <img className="w-56 h-44 m-1" src={image} alt="" key={index} />;
         })}
       </div>
     </div>

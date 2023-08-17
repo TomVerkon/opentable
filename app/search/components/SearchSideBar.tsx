@@ -11,7 +11,6 @@ function SearchSideBar({
   cuisines: { id: number; name: string }[];
   locations: { id: number; name: string }[];
 }) {
-  console.log('SearchSideBar searchParams:', searchParams);
   const { city, cuisine, price } = searchParams;
   const priceClassName = 'border w-1/4 text-reg text-center p-2 rounded ';
   const prices = [
@@ -78,13 +77,14 @@ function SearchSideBar({
       <div className="mt-3 pb-4">
         <h1 className="mb-2">Price</h1>
         <div className="flex">
-          {prices.map(({ itorPrice, label, className }) => {
+          {prices.map(({ itorPrice, label, className }, index) => {
             const fontType = setTextClass(itorPrice, price);
             className += className + fontType;
             return (
               <Link
                 href={{ pathname: '/search', query: { cuisine, price: itorPrice, city } }}
                 className={className}
+                key={index}
               >
                 {label}
               </Link>

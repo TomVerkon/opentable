@@ -42,9 +42,6 @@ function buildWhere(
   cuisine: string | undefined,
   price: PRICE | undefined,
 ) {
-  console.log('city:', city);
-  console.log('cuisine:', cuisine);
-  console.log('price:', price);
   const filters: Object[] = [];
 
   if (city) {
@@ -98,7 +95,6 @@ const fetchCuisines = async () => {
 
 async function SearchPage(props: Props) {
   const { city, cuisine, price } = props.searchParams;
-  console.log('Search Page searchParams:', props.searchParams);
   const restaurants = await fetchRestaurants(city, cuisine, price);
   const locations = await fetchLocations();
   const cuisines = await fetchCuisines();

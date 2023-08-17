@@ -1,12 +1,12 @@
-import Image, { StaticImageData } from 'next/image';
+//'use client';
+import Image from 'next/image';
 import emptyStar from '../../public/icons/empty-star.png';
 import fullStar from '../../public/icons/full-star.png';
 import halfStar from '../../public/icons/half-star.png';
 
 export default function Stars({ avgRating }: { avgRating: number }) {
   const renderStars = () => {
-    const stars: StaticImageData[] = [];
-    console.log('stars avgRating:', avgRating);
+    const stars = [];
 
     for (let i = 0; i < 5; i++) {
       const difference = avgRating - i;
@@ -15,8 +15,8 @@ export default function Stars({ avgRating }: { avgRating: number }) {
       else stars.push(emptyStar);
     }
 
-    return stars.map(star => {
-      return <Image src={star} alt="" className="w-4 h-4 mr-1" />;
+    return stars.map((star, index) => {
+      return <Image key={index} src={star} alt="" className="w-4 h-4 mr-1" />;
     });
   };
 
