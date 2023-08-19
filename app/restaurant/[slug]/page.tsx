@@ -2,6 +2,7 @@ import prisma from '@/utils/client';
 import { getReviewRatingsAverage } from '@/utils/getReviewRatingsAverage';
 import { Cuisine, Location, PRICE, Review } from '@prisma/client';
 import { Metadata } from 'next';
+import { notFound } from 'next/navigation';
 import RestaurantDescription from './components/RestaurantDescription';
 import RestaurantImages from './components/RestaurantImages';
 import RestaurantNavBar from './components/RestaurantNavBar';
@@ -57,7 +58,7 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
 async function RestaurantDetailsPage({ params }: Props) {
   const { slug } = params;
   const restaurant = await fetchRestaurant(slug);
-  if (!restaurant) return <div>Not Found</div>;
+  if (!restaurant) notFound();
   let avgRating = getReviewRatingsAverage(restaurant.reviews);
 
   return (
