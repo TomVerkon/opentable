@@ -1,10 +1,13 @@
-//'use client';
+'use client';
 import Image from 'next/image';
-import emptyStar from '../../public/icons/empty-star.png';
-import fullStar from '../../public/icons/full-star.png';
-import halfStar from '../../public/icons/half-star.png';
+// import emptyStar from '../../public/icons/empty-star.png';
+// import fullStar from '../../public/icons/full-star.png';
+// import halfStar from '../../public/icons/half-star.png';
 
 export default function Stars({ avgRating }: { avgRating: number }) {
+  const fullStar = '/icons/full-star-icon.png';
+  const halfStar = '/icons/half-star-icon.png';
+  const emptyStar = '/icons/empty-star-icon.png';
   const renderStars = () => {
     const stars = [];
 
@@ -16,7 +19,7 @@ export default function Stars({ avgRating }: { avgRating: number }) {
     }
 
     return stars.map((star, index) => {
-      return <Image key={index} src={star} alt="" className="w-4 h-4 mr-1" />;
+      return <Image key={index} src={star} alt="" width={4} height={4} className="w-4 h-4 mr-1" />;
     });
   };
 

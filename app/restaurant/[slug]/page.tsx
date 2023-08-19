@@ -1,5 +1,6 @@
+import prisma from '@/utils/client';
 import { getReviewRatingsAverage } from '@/utils/getReviewRatingsAverage';
-import { Cuisine, Location, PRICE, PrismaClient, Review } from '@prisma/client';
+import { Cuisine, Location, PRICE, Review } from '@prisma/client';
 import { Metadata } from 'next';
 import RestaurantDescription from './components/RestaurantDescription';
 import RestaurantImages from './components/RestaurantImages';
@@ -8,8 +9,6 @@ import RestaurantRating from './components/RestaurantRating';
 import RestaurantReservationCard from './components/RestaurantReservationCard';
 import RestaurantReviews from './components/RestaurantReviews';
 import RestaurantTitle from './components/RestaurantTitle';
-
-const prisma = new PrismaClient();
 
 interface Props {
   params: {

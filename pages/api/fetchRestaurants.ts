@@ -1,7 +1,7 @@
 import { Restaurant } from '@/app/search/page';
-import { PRICE, PrismaClient } from '@prisma/client';
+import prisma from '@/utils/client';
+import { PRICE } from '@prisma/client';
 
-const prisma = new PrismaClient();
 const fetchRestaurants = async (
   city: string,
   location: string,
@@ -21,6 +21,7 @@ const fetchRestaurants = async (
       Cuisine: {
         select: { name: true },
       },
+      reviews: true,
     },
     where: { location: { name: city } },
   })) as Restaurant[];

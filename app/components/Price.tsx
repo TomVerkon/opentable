@@ -1,4 +1,5 @@
 import { PRICE } from '@prisma/client';
+import { Fragment } from 'react';
 
 interface Props {
   price?: PRICE;
@@ -11,15 +12,15 @@ export default function Price({ price }: Props) {
     }
     if (price === PRICE.CHEAP) {
       return (
-        <>
+        <Fragment>
           <span>$$</span> <span className="text-gray-300">$$</span>
-        </>
+        </Fragment>
       );
     } else if (price === PRICE.REGULAR) {
       return (
-        <>
+        <Fragment>
           <span>$$$</span> <span className="text-gray-300">$</span>
-        </>
+        </Fragment>
       );
     } else {
       return <span>$$$$</span>;

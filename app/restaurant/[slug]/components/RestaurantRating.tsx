@@ -5,9 +5,7 @@ function RestaurantRating({ avgRating, reviewCount }: { avgRating: number; revie
   return (
     <div className="flex items-end">
       <div className="ratings mt-2 flex items-center">
-        <p>
-          <Stars avgRating={avgRating} />
-        </p>
+        <Stars avgRating={avgRating} />
         <p className="text-reg ml-3">{avgRating === 0 ? 'No ratings' : avgRating}</p>
       </div>
       <div>

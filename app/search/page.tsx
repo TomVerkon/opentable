@@ -1,10 +1,9 @@
-import { PRICE, PrismaClient, Review } from '@prisma/client';
+import prisma from '@/utils/client';
+import { PRICE, Review } from '@prisma/client';
 import { Metadata } from 'next';
 import RestaurantCard from './components/RestaurantCard';
 import SearchHeader from './components/SearchHeader';
 import SearchSideBar from './components/SearchSideBar';
-
-const prisma = new PrismaClient();
 
 export const metadata: Metadata = {
   title: 'SearchPage | OpenTable | Clone',

@@ -1,4 +1,4 @@
-'use client';
+//'use client';
 import Price from '@/app/components/Price';
 import Stars from '@/app/components/Stars';
 import { getReviewRatingsAverage } from '@/utils/getReviewRatingsAverage';
