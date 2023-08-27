@@ -8,10 +8,6 @@ import { NextApiRequest, NextApiResponse } from 'next';
 //        143 = Token invalid
 //        167 = Email not found
 
-const { email } = jwt.decode(token) as {
-  email: string;
-};
-
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const bearerToken = req.headers['authorization'] as string;
   const token = bearerToken.split(' ')[1] as string;

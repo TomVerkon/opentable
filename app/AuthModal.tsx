@@ -1,7 +1,7 @@
 'use client';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import AuthModalInputs from './components/AuthModalInputs';
 
 const style = {
@@ -19,11 +19,7 @@ export default function AuthModal({ isSignin }: { isSignin: boolean }) {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-
-  const renderContent = (signinContent: string, signupContent: string): string => {
-    return isSignin ? signinContent : signupContent;
-  };
-
+  const [disabled, setDisabled] = useState(true);
   const [inputs, setInputs] = useState({
     firstName: '',
     lastName: '',
@@ -32,6 +28,21 @@ export default function AuthModal({ isSignin }: { isSignin: boolean }) {
     city: '',
     password: '',
   });
+
+  const renderContent = (signinContent: string, signupContent: string): string => {
+    return isSignin ? signinContent : signupContent;
+  };
+
+  useEffect(() => {
+    const { firstName, lastName, email, phone, city, password } = inputs;
+    if (isSignin) {
+      if (email && password) setDisabled(false);
+      else setDisabled(true);
+    } else {
+      if (email && password && firstName && lastName && phone && city) setDisabled(false);
+      else setDisabled(true);
+    }
+  }, [inputs]);
 
   const handleChangeInput = (e: ChangeEvent<HTMLInputElement>): void => {
     setInputs({
@@ -70,7 +81,10 @@ export default function AuthModal({ isSignin }: { isSignin: boolean }) {
                 handleChangeInput={handleChangeInput}
                 isSignin={isSignin}
               />
-              <button className="uppercase bg-red-600 w-full text-white p-3 rounded text-sm">
+              <button
+                className="uppercase bg-red-600 w-full text-white p-3 rounded text-sm disabled:bg-gray-400"
+                disabled={disabled}
+              >
                 {renderContent('Login', 'Create Account')}
               </button>
             </div>
