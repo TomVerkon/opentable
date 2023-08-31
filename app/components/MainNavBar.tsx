@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import AuthModal from '../AuthModal';
+import AuthModal from './AuthModal';
 
 function MainNavBar() {
   return (
