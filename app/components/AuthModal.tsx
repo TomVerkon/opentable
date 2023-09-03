@@ -18,22 +18,12 @@ const style = {
   p: 4,
 };
 
-// const initialInputsState = {
-//   firstName: '',
-//   lastName: '',
-//   email: '',
-//   phone: '',
-//   city: '',
-//   password: '',
-// };
-
 export default function AuthModal({ isSignin }: { isSignin: boolean }) {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const { signin, signup } = useAuth();
-  const { data, error, loading, setAuthState } = useContext(AuthenticationContext);
-  console.log('AuthModal:', loading);
+  const { data, error, loading } = useContext(AuthenticationContext);
 
   const renderContent = (signinContent: string, signupContent: string): string => {
     return isSignin ? signinContent : signupContent;
@@ -99,11 +89,11 @@ export default function AuthModal({ isSignin }: { isSignin: boolean }) {
       >
         <Box sx={style}>
           {loading ? (
-            <div className="py-24 px-2 h-[400px] flex justify-center">
+            <div className="py-24 px-2 h-[450px] flex justify-center">
               <CircularProgress />
             </div>
           ) : (
-            <div className="p2 h-[400px]">
+            <div className="p2 h-[450px]">
               {error && (
                 <Alert severity="error" className="mb-4">
                   {error}

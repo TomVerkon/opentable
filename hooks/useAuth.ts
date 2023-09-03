@@ -1,5 +1,6 @@
 import { AuthenticationContext } from '@/app/context/AuthContext';
 import axios from 'axios';
+import { deleteCookie } from 'cookies-next';
 import { useContext } from 'react';
 
 const useAuth = () => {
@@ -15,7 +16,6 @@ const useAuth = () => {
     },
     handleClose: () => void,
   ) => {
-    // console.log('useAuth0:', authState);
     setAuthState({ data: null, error: null, loading: true });
     try {
       const response = await axios.post('http://localhost:3000/api/auth/signin', {
@@ -26,7 +26,6 @@ const useAuth = () => {
 
       handleClose();
     } catch (error: any) {
-      // console.log('useAuth signin failed');
       setAuthState({
         data: null,
         loading: false,
@@ -53,11 +52,39 @@ const useAuth = () => {
     handleClose: () => void,
   ) => {
     setAuthState({ data: null, error: null, loading: true });
+    try {
+      const response = await axios.post('http://localhost:3000/api/auth/signup', {
+        email,
+        password,
+        firstName,
+        lastName,
+        city,
+        phone,
+      });
+      setAuthState({ error: null, loading: false, data: response.data });
+      handleClose();
+    } catch (error: any) {
+      setAuthState({
+        data: null,
+        loading: false,
+        error: error.response.data.errorMessage,
+      });
+    }
+  };
+  const signout = async () => {
+    deleteCookie('jwt');
+
+    setAuthState({
+      data: null,
+      loading: false,
+      error: null,
+    });
   };
 
   return {
     signin,
     signup,
+    signout,
   };
 };
 

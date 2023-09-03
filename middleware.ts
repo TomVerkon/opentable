@@ -14,12 +14,9 @@ function getErrorResponse(errorCode: string) {
 export async function middleware(req: NextRequest, res: NextResponse) {
   const bearerToken = req.headers.get('authorization') as string | undefined;
   if (!bearerToken) return getErrorResponse('121');
-  console.log(bearerToken);
 
   const token = bearerToken.split(' ')[1] as string;
   if (!token) return getErrorResponse('137');
-
-  console.log(token);
 
   try {
     await verifyToken(token);

@@ -2,21 +2,22 @@ import prisma from '@/utils/client';
 import { getSignupValidatorSchema } from '@/utils/getSignupValidatorSchema';
 import { getSignedToken } from '@/utils/tokenUtils';
 import bcrypt from 'bcrypt';
+import { setCookie } from 'cookies-next';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'POST') {
     const { firstName, lastName, city, phone, email, password } = req.body;
-    const errors: string[] = [];
+    let errors: string[] = [];
     const validationSchema = getSignupValidatorSchema(req.body);
     validationSchema.forEach(check => {
       if (!check.valid) {
-        errors.push(check.errorMessage);
+        errors.push(check.errorMessage + ', ');
       }
     });
 
     if (errors.length > 0) {
-      return res.status(400).json({ errorMessages: errors });
+      return res.status(400).json({ errorMessage: errors });
     }
 
     const existingUser = await prisma.user.findUnique({ where: { email: email } });
@@ -34,7 +35,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     });
 
     const token = await getSignedToken(email);
-    res.status(200).send({ token });
+    setCookie('jwt', token, { req, res, maxAge: 60 * 60 * 24 });
+    return res.status(200).send({ firstName, lastName, email, phone, city });
   } else {
     res.status(404).json('Unknown endpoint');
   }

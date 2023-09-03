@@ -28,6 +28,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   if (!user) {
     return res.status(401).json({ errorMessage: 'Unauthorized request (167)' });
   } else {
-    return res.status(200).json(user);
+    return res.status(200).json({
+      id: user.id,
+      firstName: user.first_name,
+      lastName: user.last_name,
+      phone: user.phone,
+      email: user.email,
+      city: user.city,
+    });
   }
 }
