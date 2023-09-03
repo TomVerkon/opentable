@@ -19,12 +19,17 @@ function MainNavBar() {
         <div>
           <div className="flex">
             {data ? (
-              <button
-                className="bg-blue-400 text-white border p-1 px-4 rounded mr-3"
-                onClick={signout}
-              >
-                Signout
-              </button>
+              <>
+                <span className="mr-4 mt-1">
+                  Welcome {data.firstName} {data.lastName}
+                </span>
+                <button
+                  className="bg-blue-400 text-white border p-1 px-4 rounded mr-3"
+                  onClick={signout}
+                >
+                  Signout
+                </button>
+              </>
             ) : (
               <>
                 <AuthModal isSignin={true} />
