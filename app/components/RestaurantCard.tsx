@@ -27,7 +27,7 @@ function RestaurantCard(props: Props) {
             </div>
           </div>
           <div className="flex text-reg font-light capitalize">
-            <p className=" mr-3">{restaurant.Cuisine.name}</p>
+            <p className=" mr-3">{restaurant.cuisine.name}</p>
             <Price price={restaurant.price} />
             <p>{restaurant.location.name}</p>
           </div>

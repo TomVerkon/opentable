@@ -30,7 +30,7 @@ export interface Restaurant {
   location: {
     name: string;
   };
-  Cuisine: {
+  cuisine: {
     name: string;
   };
   reviews: Review[];

@@ -24,10 +24,12 @@ export interface RestaurantDetailCardType {
   price: PRICE;
   location: Location;
   description: string;
-  Cuisine: Cuisine;
+  cuisine: Cuisine;
   slug: string;
   reviews: Review[];
   images: string[];
+  open_time: string;
+  close_time: string;
 }
 
 const fetchRestaurant = async (slug: string): Promise<RestaurantDetailCardType | null> => {
@@ -39,10 +41,12 @@ const fetchRestaurant = async (slug: string): Promise<RestaurantDetailCardType |
       price: true,
       location: true,
       description: true,
-      Cuisine: true,
+      cuisine: true,
       slug: true,
       reviews: true,
       images: true,
+      open_time: true,
+      close_time: true,
     },
     where: { slug: slug },
   })) as RestaurantDetailCardType;
@@ -72,7 +76,10 @@ async function RestaurantDetailsPage({ params }: Props) {
         <RestaurantReviews reviews={restaurant.reviews} />
       </div>
       <div className="w-[22%] relative text-reg">
-        <RestaurantReservationCard />
+        <RestaurantReservationCard
+          openTime={restaurant.open_time}
+          closeTime={restaurant.close_time}
+        />
       </div>
     </div>
   );

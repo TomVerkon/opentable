@@ -27,7 +27,7 @@ function MainNavBar() {
                   className="bg-blue-400 text-white border p-1 px-4 rounded mr-3"
                   onClick={signout}
                 >
-                  Signout
+                  Sign out
                 </button>
               </>
             ) : (

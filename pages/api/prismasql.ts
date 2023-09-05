@@ -29,7 +29,7 @@ export interface RestaurantWhere {
   location: {
     name: string;
   };
-  Cuisine: {
+  cuisine: {
     name: string;
   };
 }
@@ -50,7 +50,7 @@ const fetchRestaurantsWhere = async (
       location: {
         select: { name: true },
       },
-      Cuisine: {
+      cuisine: {
         select: { name: true },
       },
     },

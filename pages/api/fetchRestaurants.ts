@@ -18,7 +18,7 @@ const fetchRestaurants = async (
       location: {
         select: { name: true },
       },
-      Cuisine: {
+      cuisine: {
         select: { name: true },
       },
       reviews: true,
