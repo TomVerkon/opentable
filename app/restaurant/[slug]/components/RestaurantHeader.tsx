@@ -1,4 +1,5 @@
 import renderTitle from '@/utils/renderTitleFromSlug';
+
 function RestaurantHeader({ slug }: { slug: string }) {
   const title = renderTitle(slug);
   return (

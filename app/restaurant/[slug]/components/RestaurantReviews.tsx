@@ -1,11 +1,7 @@
 import { Review } from '@prisma/client';
 import RestaurantReviewCard from './RestaurantReviewCard';
 
-interface Props {
-  reviews: Review[];
-}
-
-function RestaurantReviews({ reviews }: Props) {
+function RestaurantReviews({ reviews }: { reviews: Review[] }) {
   let headerText = 'Be the first to review this resaturant';
 
   if (reviews.length > 0) {

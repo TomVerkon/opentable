@@ -1,6 +1,6 @@
 import MainHeader from './components/MainHeader';
 
-export default function Loading() {
+export default function MainLoading() {
   return (
     <main>
       <MainHeader />

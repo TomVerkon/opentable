@@ -1,11 +1,7 @@
 import Stars from '@/app/components/Stars';
 import { Review } from '@prisma/client';
 
-interface Props {
-  review: Review;
-}
-
-function RestaurantReviewCard({ review }: Props) {
+function RestaurantReviewCard({ review }: { review: Review }) {
   const initials = review.first_name.charAt(0) + ' ' + review.last_name.charAt(0);
   const fullName = review.first_name + ' ' + review.last_name;
   return (

@@ -1,11 +1,7 @@
 import { PRICE } from '@prisma/client';
 import { Fragment } from 'react';
 
-interface Props {
-  price?: PRICE;
-}
-
-export default function Price({ price }: Props) {
+export default function Price({ price }: { price?: PRICE }) {
   const renderPrice = () => {
     if (price === undefined) {
       return <span className="text-center">All</span>;

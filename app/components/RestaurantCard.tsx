@@ -4,12 +4,7 @@ import { RestaurantCardType } from '../page';
 import Price from './Price';
 import Stars from './Stars';
 
-interface Props {
-  restaurant: RestaurantCardType;
-}
-
-function RestaurantCard(props: Props) {
-  const { restaurant } = props;
+export default function RestaurantCard({ restaurant }: { restaurant: RestaurantCardType }) {
   const reviewCount = restaurant.reviews.length;
   const avgRating = getReviewRatingsAverage(restaurant.reviews);
   return (
@@ -37,5 +32,3 @@ function RestaurantCard(props: Props) {
     </div>
   );
 }
-
-export default RestaurantCard;

@@ -1,4 +1,4 @@
-import { Item } from '../page';
+import { Item } from '@prisma/client';
 import MenuCard from './MenuCard';
 
 function Menu({ items }: { items: Item[] }) {

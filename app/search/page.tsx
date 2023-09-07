@@ -16,11 +16,6 @@ export interface SearchParams {
   price?: PRICE | undefined;
 }
 
-export interface Props {
-  params: {};
-  searchParams: SearchParams;
-}
-
 export interface Restaurant {
   id: number;
   name: string;
@@ -47,7 +42,7 @@ function buildWhere(
     filters.push({ location: { name: { equals: city.toLowerCase() } } });
   }
   if (cuisine) {
-    filters.push({ Cuisine: { name: { equals: cuisine.toLowerCase() } } });
+    filters.push({ cuisine: { name: { equals: cuisine.toLowerCase() } } });
   }
   if (price) {
     filters.push({ price: { equals: price } });
@@ -71,7 +66,7 @@ const fetchRestaurants = async (
       location: {
         select: { name: true },
       },
-      Cuisine: {
+      cuisine: {
         select: { name: true },
       },
       reviews: true,
@@ -92,8 +87,8 @@ const fetchCuisines = async () => {
   });
 };
 
-async function SearchPage(props: Props) {
-  const { city, cuisine, price } = props.searchParams;
+async function SearchPage({ searchParams }: { params: {}; searchParams: SearchParams }) {
+  const { city, cuisine, price } = searchParams;
   const restaurants = await fetchRestaurants(city, cuisine, price);
   const locations = await fetchLocations();
   const cuisines = await fetchCuisines();
@@ -101,18 +96,14 @@ async function SearchPage(props: Props) {
     <>
       <SearchHeader />
       <div className="flex py-4 m-auto w-2/3 justify-between items-start">
-        <SearchSideBar
-          searchParams={props.searchParams}
-          cuisines={cuisines}
-          locations={locations}
-        />
+        <SearchSideBar searchParams={searchParams} cuisines={cuisines} locations={locations} />
         <div className="w-5/6 ml-4">
           {restaurants.length > 0 ? (
             restaurants.map(restaurant => {
               return <RestaurantCard key={restaurant.id} restaurant={restaurant} />;
             })
           ) : (
-            <p>No restaurants found for {props.searchParams.city}</p>
+            <p>No restaurants found for {searchParams.city}</p>
           )}
         </div>
       </div>

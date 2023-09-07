@@ -5,11 +5,8 @@ import { getReviewRatingsAverage } from '@/utils/getReviewRatingsAverage';
 import Link from 'next/link';
 import { Restaurant } from '../page';
 
-interface Props {
-  restaurant: Restaurant;
-}
-function RestaurantCard(props: Props) {
-  const { main_image, name, price, Cuisine, location, slug, reviews } = props.restaurant;
+export default function RestaurantCard({ restaurant }: { restaurant: Restaurant }) {
+  const { main_image, name, price, cuisine, location, slug, reviews } = restaurant;
   const average = getReviewRatingsAverage(reviews);
   const ratingAverage =
     average > 4.5 ? 'Awesome' : average > 3.5 ? 'Great' : average > 2.5 ? 'Average' : 'Okay';
@@ -28,7 +25,7 @@ function RestaurantCard(props: Props) {
         <div className="mb-9">
           <div className="font-light flex text-reg">
             <Price price={price} />
-            <p className="mr-4 capitalize">{Cuisine.name}</p>
+            <p className="mr-4 capitalize">{cuisine.name}</p>
             <p className="mr-4 capitalize">{location.name}</p>
           </div>
         </div>
@@ -39,5 +36,3 @@ function RestaurantCard(props: Props) {
     </div>
   );
 }
-
-export default RestaurantCard;

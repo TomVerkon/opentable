@@ -1,4 +1,4 @@
-import { Item } from '../page';
+import { Item } from '@prisma/client';
 
 function MenuCard({ item }: { item: Item }) {
   return (

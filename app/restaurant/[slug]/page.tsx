@@ -59,7 +59,7 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   };
 }
 
-async function RestaurantDetailsPage({ params }: Props) {
+async function RestaurantDetailsPage({ params }: { params: { slug: string } }) {
   const { slug } = params;
   const restaurant = await fetchRestaurant(slug);
   if (!restaurant) notFound();

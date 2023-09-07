@@ -1,7 +1,6 @@
 import Stars from '@/app/components/Stars';
 
 function RestaurantRating({ avgRating, reviewCount }: { avgRating: number; reviewCount: number }) {
-  //let avgRatingTxt = Number.isNaN(avgRating) ? 'None' : avgRating.toString();
   return (
     <div className="flex items-end">
       <div className="ratings mt-2 flex items-center">
