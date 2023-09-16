@@ -106,7 +106,7 @@ model Booking {
   restaurant        Restaurant      @relation(fields: [restaurant_id], references: [id])
   created_at        DateTime        @default(now())
   updated_at        DateTime        @updatedAt
-  tables            Booking_Table[]
+  tables            Booking_table[]
 }
 
 model Table {
@@ -116,10 +116,10 @@ model Table {
   restaurant    Restaurant      @relation(fields: [restaurant_id], references: [id])
   created_at    DateTime        @default(now())
   updated_at    DateTime        @updatedAt
-  bookings      Booking_Table[]
+  bookings      Booking_table[]
 }
 
-model Booking_Table {
+model Booking_table {
   booking_id Int
   booking    Booking  @relation(fields: [booking_id], references: [id])
   table_id   Int

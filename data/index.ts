@@ -1,2 +1,2 @@
-export * from './partySize';
+export * from './partySizes';
 export * from './times';

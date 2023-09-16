@@ -8,6 +8,8 @@ type Data = {
 };
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
+  await prisma.booking_table.deleteMany();
+  await prisma.booking.deleteMany();
   await prisma.table.deleteMany();
   await prisma.review.deleteMany();
   await prisma.item.deleteMany();
@@ -1014,6 +1016,17 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     },
   });
 
+  const userVerkon = await prisma.user.create({
+    data: {
+      first_name: 'Tom',
+      last_name: 'Verkon',
+      email: 'tverkon2@hotmail.com',
+      city: 'ottawa',
+      password: '$2b$10$VykWYSbOH3TWBu0Uj1xXJesNOXu0CNmVioAZcV3OLX2bozpJJohPe',
+      phone: '1112223333',
+    },
+  });
+
   await prisma.review.createMany({
     data: [
       {
@@ -1235,19 +1248,86 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     ],
   });
 
-  await prisma.table.createMany({
+  const table42 = await prisma.table.create({
+    data: {
+      restaurant_id: vivaanId,
+      seats: 2,
+    },
+  });
+
+  const table441 = await prisma.table.create({
+    data: {
+      restaurant_id: vivaanId,
+      seats: 4,
+    },
+  });
+
+  const table442 = await prisma.table.create({
+    data: {
+      restaurant_id: vivaanId,
+      seats: 4,
+    },
+  });
+
+  const bookingfor2 = await prisma.booking.create({
+    data: {
+      number_of_people: 2,
+      booking_time: '2023-01-01T20:00:00.000Z',
+      booker_first_name: 'T',
+      booker_last_name: 'T',
+      booker_occasion: 'T',
+      booker_email: 't@t.com',
+      booker_phone: '1112223333',
+      booker_request: 'T',
+      restaurant_id: vivaanId,
+    },
+  });
+
+  const bookingfor8 = await prisma.booking.create({
+    data: {
+      number_of_people: 8,
+      booking_time: '2023-01-01T20:00:00.000Z',
+      booker_first_name: 'T',
+      booker_last_name: 'T',
+      booker_occasion: 'T',
+      booker_email: 't@t.com',
+      booker_phone: '1112223333',
+      booker_request: 'T',
+      restaurant_id: vivaanId,
+    },
+  });
+
+  const bookingfor4 = await prisma.booking.create({
+    data: {
+      number_of_people: 4,
+      booking_time: '2023-01-01T19:30:00.000Z',
+      booker_first_name: 'T',
+      booker_last_name: 'T',
+      booker_occasion: 'T',
+      booker_email: 't@t.com',
+      booker_phone: '1112223333',
+      booker_request: 'T',
+      restaurant_id: vivaanId,
+    },
+  });
+
+  await prisma.booking_table.createMany({
     data: [
       {
-        restaurant_id: vivaanId,
-        seats: 4,
+        booking_id: bookingfor2.id,
+        table_id: table42.id,
       },
       {
-        restaurant_id: vivaanId,
-        seats: 4,
+        booking_id: bookingfor8.id,
+        table_id: table441.id,
       },
       {
-        restaurant_id: vivaanId,
-        seats: 2,
+        booking_id: bookingfor8.id,
+        table_id: table442.id,
+      },
+      {
+        booking_id: bookingfor4.id,
+        table_id: table442.id,
       },
     ],
   });
