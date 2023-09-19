@@ -135,7 +135,6 @@ function RestaurantReservationCard({
           <div className="flex flex-wrap mt-2">
             {data.map(time => {
               return time.available ? (
-                // const formattedTime = new Date(`${ day }T${ time.time }`).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true });
                 <Link
                   key={time.time}
                   href={`/reserve/${slug}?date=${format(selectedDate!, 'YYYY-MM-dd')}T${
