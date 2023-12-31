@@ -1272,7 +1272,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   const bookingfor2 = await prisma.booking.create({
     data: {
       number_of_people: 2,
-      booking_time: '2023-01-01T20:00:00.000Z',
+      booking_time: '2023-12-01T20:00:00.000Z',
       booker_first_name: 'T',
       booker_last_name: 'T',
       booker_occasion: 'T',
@@ -1286,7 +1286,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   const bookingfor8 = await prisma.booking.create({
     data: {
       number_of_people: 8,
-      booking_time: '2023-01-01T20:00:00.000Z',
+      booking_time: '2023-12-01T20:00:00.000Z',
       booker_first_name: 'T',
       booker_last_name: 'T',
       booker_occasion: 'T',
@@ -1300,7 +1300,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   const bookingfor4 = await prisma.booking.create({
     data: {
       number_of_people: 4,
-      booking_time: '2023-01-01T19:30:00.000Z',
+      booking_time: '2023-12-01T19:30:00.000Z',
       booker_first_name: 'T',
       booker_last_name: 'T',
       booker_occasion: 'T',

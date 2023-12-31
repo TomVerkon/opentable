@@ -98,10 +98,10 @@ model Booking {
   booking_time      DateTime
   booker_first_name String
   booker_last_name  String
-  booker_occasion   String
+  booker_occasion   String?
   booker_email      String
   booker_phone      String
-  booker_request    String
+  booker_request    String?
   restaurant_id     Int
   restaurant        Restaurant      @relation(fields: [restaurant_id], references: [id])
   created_at        DateTime        @default(now())
